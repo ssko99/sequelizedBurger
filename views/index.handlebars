@@ -1,0 +1,48 @@
+ <div class="container">
+        <div class="row text-center">
+            <img src="/assets/img/images.jpeg" alt="burgers" style="width:304px;height:228px;">
+            <h1 style="color:red">Eat-Da-Burger!</h1>
+        </div>
+        <div class="row">
+            <div class=col-md-6>
+
+                {{#each burgers}} {{#unless this.devour}}
+                <div class=col-md-12>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8" style="margin:2px;background-color: white;text-align: center">
+                        {{@index}} : {{this.burger_name}}
+                    </div>
+                    <div class="col-md-1" style="text-align: right;">
+                        <div style="margin:2px">
+                            <form action="/{{this.id}}?_method=PUT" method="POST">
+                                <input type="hidden" name="devour" value="true">
+                                <button type="submit"> DEVOUR</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{/unless}} {{/each}}
+            </div>
+            <div class=col-md-6>
+                {{#each burgers}} {{#if this.devour}}
+                <div class="col-md-12">
+                    <div class="col-md-8" style="margin:2px;background-color:white;text-alight:center">
+                        <div style="margin:2px">
+                            {{this.burger_name}}
+                        </div>
+                    </div>
+                </div>
+                {{/if}} {{/each}}
+            </div>
+        </div>
+        <div class="row text-center">
+            <form action="/" method="POST">
+                <div class="form-group input-lg">
+                    <input type="text" id="ca" name="burger_name">
+                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+            <p style="font-size:12px">
+                Enter a burger you want to eat click the "Submit" button </p>
+        </div>
+    </div>

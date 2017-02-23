@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Eat-Da-Burger!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body style="background-color: orange">
+    <div class="container">
+        <div class="row text-center">
+            <img src="/assets/img/images.jpeg" alt="burgers" style="width:304px;height:228px;">
+            <h1 style="color:red">Eat-Da-Burger!</h1>
+        </div>
+        <div class="row">
+            <div class=col-md-6>
+                {{#each burgers}} {{#unless this.devour}}
+                <div class=col-md-12>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3" style="background-color: white;text-align: center">
+                        {{this.burger_name}}
+                    </div>
+                    <div class="col-md-1" style="text-align: right">
+                        <div style="background-color: white">
+                            <form action="/{{this.id}}?_method=PUT" method="POST">
+                                <input type="hidden" name="devour" value="true">
+                                <button type="submit"> DEVOUR</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{/unless}} {{/each}}
+            </div>
+            <div class=col-md-6>
+                {{#each burgers}} {{#if this.devour}}
+                <div class="col-md-12">
+                    <div class="col-md-3" style="background-color:white;text-alight:center">
+                        <div>
+                            {{this.burger_name}}
+                        </div>
+                    </div>
+                </div>
+                {{/if}} {{/each}}
+            </div>
+        </div>
+        <div class="row text-center">
+            <form action="/" method="POST">
+                <div class="form-group input-lg">
+                    <input type="text" id="ca" name="burger_name">
+                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+            <p style="font-size:12px">
+                Enter a burger you want to eat click the "Submit" button </p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+
+</html>
